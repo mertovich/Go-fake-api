@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Periyot/BodyParser"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/Periyot/BodyParser"
 )
 
 func main() {
@@ -26,6 +27,10 @@ func main() {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
+	// Fatal Access-Control-Allow-Origin
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
